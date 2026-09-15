@@ -41,7 +41,8 @@ static FUNC_NORETURN void jump_to_bootloader(void)
 	SysTick->CTRL = 0;
 
 	// LL_SYSCFG_SetRemapMemory(LL_SYSCFG_REMAP_SYSTEMFLASH);
-	__HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
+	// __HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
+	HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
 
 	jmp = (void (*)(void))(void (*)(void))(*((uint32_t *)((bootloader + 4))));
 
