@@ -9,6 +9,7 @@
 #include <zephyr/retention/retention.h>
 #include <zephyr/retention/bootmode.h>
 #include <stm32_ll_system.h>
+#include <stm32_hal_legacy.h>
 
 #if defined(CONFIG_ARM_MPU)
 extern void arm_core_mpu_disable(void);
@@ -41,8 +42,8 @@ static FUNC_NORETURN void jump_to_bootloader(void)
 	SysTick->CTRL = 0;
 
 	// LL_SYSCFG_SetRemapMemory(LL_SYSCFG_REMAP_SYSTEMFLASH);
-	// __HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
-	HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
+	__HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
+	// HAL_SYSCFG_REMAPMEMORY_SYSTEMFLASH();
 
 	jmp = (void (*)(void))(void (*)(void))(*((uint32_t *)((bootloader + 4))));
 
