@@ -9,7 +9,7 @@
 #include <zephyr/retention/retention.h>
 #include <zephyr/retention/bootmode.h>
 #include <stm32_ll_system.h>
-#include <stm32_hal_legacy.h>
+#include <Legacy/stm32_hal_legacy.h>
 
 #if defined(CONFIG_ARM_MPU)
 extern void arm_core_mpu_disable(void);
